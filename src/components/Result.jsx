@@ -1,3 +1,1 @@
-export const Result = () => {
-  return <p id="result"></p>;
-};
+export const Result = ({ result }) => {};
