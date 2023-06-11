@@ -14,7 +14,6 @@ export const BMIForm = () => {
   };
 
   const handleSubmit = (e) => {
-    console.log(e);
     e.preventDefault();
     clearResult();
     verifyInput(state.height, state.weight) &&
@@ -36,7 +35,6 @@ export const BMIForm = () => {
             placeholder="Cm"
             value={state.height}
             onChange={(e) => setState({ ...state, height: e.target.value })}
-            onKeyDown={clearResult}
           />
         </div>
 
@@ -49,7 +47,6 @@ export const BMIForm = () => {
             placeholder="Kg"
             value={state.weight}
             onChange={(e) => setState({ ...state, weight: e.target.value })}
-            onKeyDown={clearResult}
           />
         </div>
 
