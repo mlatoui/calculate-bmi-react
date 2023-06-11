@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { verifyInput, calculateBmi } from '../common/script';
+import { Result } from './Result';
 
 export const BMIForm = () => {
   const [state, setState] = useState({
@@ -16,11 +17,11 @@ export const BMIForm = () => {
     console.log(e);
     e.preventDefault();
     clearResult();
-    verifyInput(state.height, state.weight);
-    setState({
-      ...state,
-      result: calculateBmi(parseInt(state.height), parseInt(state.weight)),
-    });
+    verifyInput(state.height, state.weight) &&
+      setState({
+        ...state,
+        result: calculateBmi(parseInt(state.height), parseInt(state.weight)),
+      });
   };
 
   return (
@@ -56,7 +57,7 @@ export const BMIForm = () => {
           Calculate
         </button>
       </form>
-      {state.result && <p id="result">{state.result}</p>}
+      <Result state={state} />
     </>
   );
 };

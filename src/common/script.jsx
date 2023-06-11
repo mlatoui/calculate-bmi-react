@@ -9,13 +9,14 @@ export const verifyInput = (height, weight) => {
 
   if (isNaN(parsedHeight) || isNaN(parsedWeight)) {
     alert('Height and Weight should be a number');
-    return;
+    return false;
   }
 
   if (parsedHeight <= 0 || parsedWeight <= 0) {
     alert('Height and Weight should be grater than 0');
-    return;
+    return false;
   }
+  return true;
 };
 
 export const calculateBmi = (height, weight) => {
