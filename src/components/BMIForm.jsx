@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { verifyInput, calculateBmi } from '../common/script';
 
 export const BMIForm = () => {
   const [state, setState] = useState({
@@ -6,33 +7,6 @@ export const BMIForm = () => {
     weight: '',
     result: '',
   });
-
-  const parsedHeight = parseInt(state.height);
-  const parsedWeight = parseInt(state.weight);
-  const calculateBmi = () => {
-    if (state.height.trim() === '' || state.weight.trim() === '') {
-      alert('Please fill all inputs!');
-      return false;
-    }
-
-    if (isNaN(parsedHeight) || isNaN(parsedWeight)) {
-      alert('Height and Weight should be a number');
-      return;
-    }
-
-    if (parsedHeight <= 0 || parsedWeight <= 0) {
-      alert('Height and Weight should be grater than 0');
-      return;
-    }
-
-    const heightInMeters = parsedHeight / 100;
-    const bmiResult = (
-      parsedWeight /
-      (heightInMeters * heightInMeters)
-    ).toFixed(2);
-
-    setState({ ...state, result: bmiResult });
-  };
 
   const clearResult = () => {
     setState({ ...state, result: '' });
@@ -42,7 +16,11 @@ export const BMIForm = () => {
     console.log(e);
     e.preventDefault();
     clearResult();
-    calculateBmi();
+    verifyInput(state.height, state.weight);
+    setState({
+      ...state,
+      result: calculateBmi(parseInt(state.height), parseInt(state.weight)),
+    });
   };
 
   return (
